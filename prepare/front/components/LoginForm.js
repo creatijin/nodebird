@@ -1,7 +1,9 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback } from "react";
 import { Form, Input, Button } from "antd";
 import Link from "next/link";
+import PropTypes from "prop-types";
 import styled from "styled-components";
+import useInput from "../hooks/useInput";
 
 const ButtonWrapper = styled.div`
   margin-top: 10px;
@@ -11,15 +13,9 @@ const FormWrapper = styled(Form)`
 `;
 
 const LoginForm = ({ setIsLoggedIn }) => {
-  const [id, setId] = useState("");
-  const [password, setpassword] = useState("");
-
-  const onChangeId = useCallback((e) => {
-    setId(e.target.value);
-  }, []);
-  const onChangePassword = useCallback((e) => {
-    setpassword(e.target.value);
-  }, []);
+  //커스텀 hooks
+  const [id, onChangeId] = useInput("");
+  const [password, onChangePassword] = useInput("");
 
   // const style = useMemo(() => ({ marginTop: 10 }), []);
   // styled-components or useMemo 사용해야지 리랜더링할때 다시 그려지지 않는다.
@@ -60,4 +56,9 @@ const LoginForm = ({ setIsLoggedIn }) => {
     </>
   );
 };
+
+LoginForm.prototype = {
+  setIsLoggedIn: PropTypes.func.isReqired,
+};
+
 export default LoginForm;
