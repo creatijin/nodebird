@@ -1,4 +1,5 @@
 import Head from "next/head";
+import AppLayout from "../components/AppLayout";
 
 const Signup = () => {
   return (
@@ -7,7 +8,9 @@ const Signup = () => {
         <meta charSet="utf-8" />
         <title>회원가입</title>
       </Head>
-      <div>회원가입 페이지</div>
+      <AppLayout>
+        <div>회원가입 페이지</div>
+      </AppLayout>
     </>
   );
 };

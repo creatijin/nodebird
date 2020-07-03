@@ -1,8 +1,19 @@
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
 import { Menu, Input, Row, Col } from "antd";
+import styled from "styled-components";
+
+import UserProfile from "../components/UserProfile";
+import LoginForm from "../components/LoginForm";
+
+const SearchInput = styled(Input.Search)`
+  vertical-align: middle;
+`;
 
 const AppLayout = ({ children }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <>
       <Menu mode="horizontal">
@@ -17,7 +28,7 @@ const AppLayout = ({ children }) => {
           </Link>
         </Menu.Item>
         <Menu.Item>
-          <Input.Search enterButton style={{ verticalAlign: "middle" }} />
+          <SearchInput enterButton />
         </Menu.Item>
         <Menu.Item>
           <Link href="/signup">
@@ -25,15 +36,25 @@ const AppLayout = ({ children }) => {
           </Link>
         </Menu.Item>
       </Menu>
-      <Row>
+      <Row gutter={16}>
         <Col xs={24} md={6}>
-          왼쪽 메뉴
+          {isLoggedIn ? (
+            <UserProfile setIsLoggedIn={setIsLoggedIn} />
+          ) : (
+            <LoginForm setIsLoggedIn={setIsLoggedIn} />
+          )}
         </Col>
         <Col xs={24} md={12}>
           {children}
         </Col>
         <Col xs={24} md={6}>
-          오른쪽 메뉴
+          <a
+            href="https://creatijin0124.netlify.app/"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Made by Creatijin
+          </a>
         </Col>
       </Row>
     </>
