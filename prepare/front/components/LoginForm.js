@@ -3,6 +3,8 @@ import { Form, Input, Button } from "antd";
 import Link from "next/link";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { loginAction } from "../reducers/user";
 import useInput from "../hooks/useInput";
 
 const ButtonWrapper = styled.div`
@@ -12,7 +14,9 @@ const FormWrapper = styled(Form)`
   padding: 10px;
 `;
 
-const LoginForm = ({ setIsLoggedIn }) => {
+const LoginForm = () => {
+  const dispatch = useDispatch();
+
   //커스텀 hooks
   const [id, onChangeId] = useInput("");
   const [password, onChangePassword] = useInput("");
@@ -21,7 +25,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
   // styled-components or useMemo 사용해야지 리랜더링할때 다시 그려지지 않는다.
 
   const onSubmitForm = useCallback(() => {
-    setIsLoggedIn(true);
+    dispatch(loginAction({ id, password }));
   }, [id, password]);
 
   return (
