@@ -51,8 +51,8 @@ const PostImages = ({ images }) => {
         <img
           role="presentation"
           width="50%"
-          src={images[1].src}
-          alt={images[1].src}
+          src={images[0].src}
+          alt={images[0].src}
           onClick={onZoom}
         />
         <div
