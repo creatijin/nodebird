@@ -4,6 +4,24 @@ export const initialState = {
   signUpData: {},
   loginData: {},
 };
+//thunk 를 사용하게 되면
+//thunk는 여러번 디스패치를 해준다, 기능 끝
+// 나머지는 직접 구현해야한다. 단점
+// export const loginAction = (data) => {
+//   return (dispatch, getState) => {
+//     const state = getState();
+//     dispatch(loginRequestAction());
+//     axios.post('/api/login')
+//       .then((res) => {
+//         dispatch(loginSuccessAction(res.data))
+//       })
+//       .catch((err) => {
+//         dispatch(logoutFailureAction(err))
+//       })
+//   }
+// }
+
+
 //Request, Success, Failure 비동기이기 때문에 원칙적으로 존재
 export const loginRequestAction = (data) => {
   return {
@@ -17,7 +35,7 @@ export const loginSuccessAction = (data) => {
     data,
   };
 };
-export const loginRequestFailure = (data) => {
+export const loginFailureAction = (data) => {
   return {
     type: "LOG_IN_FAILURE",
     data,
@@ -34,7 +52,7 @@ export const logoutSuccessAction = (data) => {
     type: "LOG_OUT_SUCCESS",
   };
 };
-export const logoutRequestFailure = (data) => {
+export const logoutFailureAction = (data) => {
   return {
     type: "LOG_OUT_FAILURE",
   };
