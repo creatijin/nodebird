@@ -42,6 +42,7 @@ export const initialState = {
 };
 
 const ADD_POST = "ADD_POST";
+
 // 오타방지
 export const addPost = {
   type: ADD_POST,

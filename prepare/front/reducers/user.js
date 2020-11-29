@@ -4,17 +4,39 @@ export const initialState = {
   signUpData: {},
   loginData: {},
 };
-
-export const loginAction = (data) => {
+//Request, Success, Failure 비동기이기 때문에 원칙적으로 존재
+export const loginRequestAction = (data) => {
   return {
-    type: "LOG_IN",
+    type: "LOG_IN_REQUEST",
+    data,
+  };
+};
+export const loginSuccessAction = (data) => {
+  return {
+    type: "LOG_IN_SUCCESS",
+    data,
+  };
+};
+export const loginRequestFailure = (data) => {
+  return {
+    type: "LOG_IN_FAILURE",
     data,
   };
 };
 
-export const logoutAction = (data) => {
+export const logoutRequestAction = (data) => {
   return {
-    type: "LOG_OUT",
+    type: "LOG_OUT_REQUEST",
+  };
+};
+export const logoutSuccessAction = (data) => {
+  return {
+    type: "LOG_OUT_SUCCESS",
+  };
+};
+export const logoutRequestFailure = (data) => {
+  return {
+    type: "LOG_OUT_FAILURE",
   };
 };
 
